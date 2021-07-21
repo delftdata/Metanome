@@ -23,16 +23,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.metanome.algorithm_integration.AlgorithmConfigurationException;
-import de.metanome.algorithm_integration.configuration.ConfigurationRequirementRelationalInput;
-import de.metanome.algorithm_integration.configuration.ConfigurationSettingFileInput;
-import de.metanome.algorithm_integration.configuration.ConfigurationSettingRelationalInput;
-import de.metanome.algorithm_integration.configuration.ConfigurationSettingTableInput;
+import de.metanome.algorithm_integration.configuration.*;
 import de.metanome.algorithm_integration.input.RelationalInputGenerator;
 import de.metanome.algorithm_integration.input.RelationalInputGeneratorInitializer;
 import de.metanome.backend.configuration.ConfigurationValueRelationalInputGenerator;
 import de.metanome.backend.constants.Constants;
 import de.metanome.backend.input.database.DefaultTableInputGenerator;
 import de.metanome.backend.input.file.DefaultFileInputGenerator;
+import de.metanome.backend.input.minio.DefaultMinIOConnectionGenerator;
+import de.metanome.backend.input.minio.DefaultMinIOInputGenerator;
 
 /**
  * Initializes {@link de.metanome.algorithm_integration.input.RelationalInputGenerator}s that are
@@ -108,6 +107,23 @@ public class DefaultRelationalInputGeneratorInitializer
     throws AlgorithmConfigurationException {
     generatorList.add(new DefaultTableInputGenerator(setting));
   }
+
+
+  @Override
+  public void initialize(ConfigurationSettingMinIOInput setting) throws AlgorithmConfigurationException {
+    DefaultMinIOConnectionGenerator connection = new DefaultMinIOConnectionGenerator(
+            setting.getMinIOConnection().getUrl(),
+            setting.getMinIOConnection().getKey(),
+            setting.getMinIOConnection().getSecretKey()
+    );
+
+    if (setting.getObject().equals("")) {
+      connection.getMinIOObjectNames(setting.getBucket()).forEach(name -> generatorList.add(new DefaultMinIOInputGenerator(setting, connection, name)));
+    } else {
+      generatorList.add(new DefaultMinIOInputGenerator(setting, connection));
+    }
+  }
+
 
   /**
    * @return the initialized {@link de.metanome.algorithm_integration.input.RelationalInputGenerator}s

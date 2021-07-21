@@ -161,4 +161,16 @@ public class DefaultConfigurationFactory implements ConfigurationFactory {
     return new ConfigurationValueTableInputGenerator(requirement);
   }
 
+  @Override
+  public ConfigurationValueMinIOConnectionGenerator build(
+          ConfigurationRequirementMinIOConnection requirement)
+          throws AlgorithmConfigurationException, FileNotFoundException {
+    return new ConfigurationValueMinIOConnectionGenerator(requirement);
+  }
+
+  @Override
+  public ConfigurationValueMinIOInputGenerator build(ConfigurationRequirementMinIOInput requirement)
+          throws AlgorithmConfigurationException, FileNotFoundException {
+    return new ConfigurationValueMinIOInputGenerator(requirement);
+  }
 }

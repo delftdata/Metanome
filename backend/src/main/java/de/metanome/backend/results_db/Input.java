@@ -41,7 +41,9 @@ import java.util.List;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = FileInput.class, name = "fileInput"),
   @JsonSubTypes.Type(value = TableInput.class, name = "tableInput"),
-  @JsonSubTypes.Type(value = DatabaseConnection.class, name = "databaseConnection")
+  @JsonSubTypes.Type(value = DatabaseConnection.class, name = "databaseConnection"),
+  @JsonSubTypes.Type(value = MinIOConnection.class, name = "minIOConnection"),
+  @JsonSubTypes.Type(value = MinIOInput.class, name = "minIOInput")
 })
 
 public class Input implements Serializable {

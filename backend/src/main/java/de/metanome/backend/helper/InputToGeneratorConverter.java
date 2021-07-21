@@ -17,16 +17,12 @@ package de.metanome.backend.helper;
 
 
 import de.metanome.algorithm_integration.AlgorithmConfigurationException;
-import de.metanome.algorithm_integration.configuration.ConfigurationSettingDatabaseConnection;
-import de.metanome.algorithm_integration.configuration.ConfigurationSettingFileInput;
-import de.metanome.algorithm_integration.configuration.ConfigurationSettingTableInput;
+import de.metanome.algorithm_integration.configuration.*;
 import de.metanome.algorithm_integration.input.RelationalInputGenerator;
 import de.metanome.backend.input.database.DefaultTableInputGenerator;
 import de.metanome.backend.input.file.DefaultFileInputGenerator;
-import de.metanome.backend.results_db.DatabaseConnection;
-import de.metanome.backend.results_db.FileInput;
-import de.metanome.backend.results_db.Input;
-import de.metanome.backend.results_db.TableInput;
+import de.metanome.backend.input.minio.DefaultMinIOInputGenerator;
+import de.metanome.backend.results_db.*;
 
 public class InputToGeneratorConverter {
 
@@ -40,6 +36,11 @@ public class InputToGeneratorConverter {
       // we do not know which table was used for profiling, thus we can not compute
       // ranking results for results on database connections
       return null;
+    } else if (input instanceof MinIOConnection) {
+      // As above?
+      return null;
+    } else if (input instanceof MinIOInput) {
+      return new DefaultMinIOInputGenerator(convertInputToSetting((MinIOInput) input));
     }
 
     return null;
@@ -76,6 +77,22 @@ public class InputToGeneratorConverter {
       .setDatabaseConnection(convertInputToSetting(input.getDatabaseConnection()))
       .setTable(input.getTableName());
   }
+
+  public static ConfigurationSettingMinIOInput convertInputToSetting(MinIOInput input) {
+    return new ConfigurationSettingMinIOInput()
+            .setMinIOConnection(convertInputToSetting(input.getMinIOConnection()))
+            .setObject(input.getObjectName())
+            .setBucket(input.getBucketName());
+  }
+
+
+  public static ConfigurationSettingMinIOConnection convertInputToSetting(MinIOConnection input) {
+    return new ConfigurationSettingMinIOConnection()
+            .setDbUrl(input.getUrl())
+            .setKey(input.getKey())
+            .setSecretKey(input.getSecretKey());
+  }
+
 
   /**
    * Converts the given database connection input to a configuration setting.

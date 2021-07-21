@@ -72,6 +72,7 @@ public class ConfigurationSettingTableInput extends ConfigurationSettingRelation
 
   @Override
   @XmlTransient
+  @JsonIgnore
   public String getValueAsString() {
     return ConfigurationSettingTableInput.getIdentifier(this.table, this.databaseConnection.getDbUrl(), this.databaseConnection.getUsername(), this.databaseConnection.getSystem());
   }

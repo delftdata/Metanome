@@ -40,13 +40,15 @@ import java.io.Serializable;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = ConfigurationRequirementBoolean.class, name = "ConfigurationRequirementBoolean"),
   @JsonSubTypes.Type(value = ConfigurationRequirementDatabaseConnection.class, name = "ConfigurationRequirementDatabaseConnection"),
+  @JsonSubTypes.Type(value = ConfigurationRequirementMinIOConnection.class, name = "ConfigurationRequirementMinIOConnection"),
   @JsonSubTypes.Type(value = ConfigurationRequirementFileInput.class, name = "ConfigurationRequirementFileInput"),
   @JsonSubTypes.Type(value = ConfigurationRequirementInteger.class, name = "ConfigurationRequirementInteger"),
   @JsonSubTypes.Type(value = ConfigurationRequirementListBox.class, name = "ConfigurationRequirementListBox"),
   @JsonSubTypes.Type(value = ConfigurationRequirementCheckBox.class, name = "ConfigurationRequirementCheckBox"),
   @JsonSubTypes.Type(value = ConfigurationRequirementRelationalInput.class, name = "ConfigurationRequirementRelationalInput"),
   @JsonSubTypes.Type(value = ConfigurationRequirementString.class, name = "ConfigurationRequirementString"),
-  @JsonSubTypes.Type(value = ConfigurationRequirementTableInput.class, name = "ConfigurationRequirementTableInput")
+  @JsonSubTypes.Type(value = ConfigurationRequirementTableInput.class, name = "ConfigurationRequirementTableInput"),
+  @JsonSubTypes.Type(value = ConfigurationRequirementMinIOInput.class, name = "ConfigurationRequirementMinIOInput")
 })
 public abstract class ConfigurationRequirement<T extends ConfigurationSetting> implements Serializable {
 

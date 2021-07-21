@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
   property = "type")
 @JsonSubTypes({
   @JsonSubTypes.Type(value = ConfigurationSettingFileInput.class, name = "ConfigurationSettingFileInput"),
+  @JsonSubTypes.Type(value = ConfigurationSettingMinIOInput.class, name = "ConfigurationSettingMinIOInput"),
   @JsonSubTypes.Type(value = ConfigurationSettingTableInput.class, name = "ConfigurationSettingTableInput")
 })
 public abstract class ConfigurationSettingRelationalInput extends ConfigurationSettingDataSource {

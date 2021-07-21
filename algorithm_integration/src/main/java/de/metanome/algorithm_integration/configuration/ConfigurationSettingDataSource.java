@@ -32,7 +32,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = ConfigurationSettingFileInput.class, name = "ConfigurationSettingFileInput"),
   @JsonSubTypes.Type(value = ConfigurationSettingTableInput.class, name = "ConfigurationSettingTableInput"),
-  @JsonSubTypes.Type(value = ConfigurationSettingDatabaseConnection.class, name = "ConfigurationSettingDatabaseConnection")
+  @JsonSubTypes.Type(value = ConfigurationSettingDatabaseConnection.class, name = "ConfigurationSettingDatabaseConnection"),
+  @JsonSubTypes.Type(value = ConfigurationSettingMinIOConnection.class, name = "ConfigurationSettingMinIOConnection"),
+  @JsonSubTypes.Type(value = ConfigurationSettingMinIOInput.class, name = "ConfigurationSettingMinIOInput")
 })
 public abstract class ConfigurationSettingDataSource extends ConfigurationSetting {
 

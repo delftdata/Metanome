@@ -148,7 +148,9 @@ public class AlgorithmExecution {
     JsonConverter<ConfigurationValue> jsonConverter = new JsonConverter<>();
     jsonConverter.addMixIn(FileInputGenerator.class, FileInputGeneratorMixIn.class);
     jsonConverter.addMixIn(TableInputGenerator.class, TableInputGeneratorMixIn.class);
+    jsonConverter.addMixIn(MinIOInputGenerator.class, MinIOInputGeneratorMixIn.class);
     jsonConverter.addMixIn(DatabaseConnectionGenerator.class, DatabaseConnectionGeneratorMixIn.class);
+    jsonConverter.addMixIn(MinIOConnectionGenerator.class, MinIOConnectionGeneratorMixIn.class);
     jsonConverter.addMixIn(RelationalInputGenerator.class, RelationalInputGeneratorMixIn.class);
     jsonConverter.addMixIn(ConfigurationValue.class, ConfigurationValueMixIn.class);
 

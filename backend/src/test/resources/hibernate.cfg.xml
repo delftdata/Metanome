@@ -62,11 +62,13 @@ limitations under the License.
 
         <mapping class="de.metanome.backend.results_db.Algorithm"/>
         <mapping class="de.metanome.backend.results_db.DatabaseConnection"/>
+        <mapping class="de.metanome.backend.results_db.MinIOConnection"/>
         <mapping class="de.metanome.backend.results_db.Execution"/>
         <mapping class="de.metanome.backend.results_db.FileInput"/>
         <mapping class="de.metanome.backend.results_db.Input"/>
         <mapping class="de.metanome.backend.results_db.Result"/>
         <mapping class="de.metanome.backend.results_db.TableInput"/>
+        <mapping class="de.metanome.backend.results_db.MinIOInput"/>
         <mapping class="de.metanome.backend.results_db.ResultType"/>
         <mapping class="de.metanome.backend.results_db.ExecutionSetting"/>
 

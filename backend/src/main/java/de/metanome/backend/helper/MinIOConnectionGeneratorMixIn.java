@@ -13,23 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.metanome.backend.helper;
+        package de.metanome.backend.helper;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import de.metanome.backend.input.database.DefaultTableInputGenerator;
-import de.metanome.backend.input.file.DefaultFileInputGenerator;
-import de.metanome.backend.input.minio.DefaultMinIOInputGenerator;
+import de.metanome.backend.input.minio.DefaultMinIOConnectionGenerator;
 
 @JsonTypeInfo(
-  use = JsonTypeInfo.Id.NAME,
-  include = JsonTypeInfo.As.PROPERTY,
-  property = "type")
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = DefaultFileInputGenerator.class, name = "defaultFileInputGenerator"),
-  @JsonSubTypes.Type(value = DefaultTableInputGenerator.class, name = "defaultTableInputGenerator"),
-  @JsonSubTypes.Type(value = DefaultMinIOInputGenerator.class, name = "defaultMinIOInputGenerator")
-})
-public abstract class RelationalInputGeneratorMixIn {
+        @JsonSubTypes.Type(value = DefaultMinIOConnectionGenerator.class, name = "defaultMinIOConnectionGenerator")})
+public abstract class MinIOConnectionGeneratorMixIn {
 
 }

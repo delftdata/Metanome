@@ -18,6 +18,7 @@ package de.metanome.algorithm_integration.input;
 
 import de.metanome.algorithm_integration.AlgorithmConfigurationException;
 import de.metanome.algorithm_integration.configuration.ConfigurationSettingFileInput;
+import de.metanome.algorithm_integration.configuration.ConfigurationSettingMinIOInput;
 import de.metanome.algorithm_integration.configuration.ConfigurationSettingTableInput;
 
 /**
@@ -47,5 +48,8 @@ public interface RelationalInputGeneratorInitializer {
    */
   public void initialize(ConfigurationSettingTableInput setting)
     throws AlgorithmConfigurationException;
+
+  public void initialize(ConfigurationSettingMinIOInput setting) throws AlgorithmConfigurationException;
+
 
 }

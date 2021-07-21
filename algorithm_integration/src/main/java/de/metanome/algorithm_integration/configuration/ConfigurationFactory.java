@@ -143,4 +143,10 @@ public interface ConfigurationFactory {
    */
   ConfigurationValue build(ConfigurationRequirementTableInput requirement)
     throws AlgorithmConfigurationException, FileNotFoundException;
+
+  ConfigurationValue build(ConfigurationRequirementMinIOConnection requirement)
+          throws AlgorithmConfigurationException, FileNotFoundException;
+
+  ConfigurationValue build(ConfigurationRequirementMinIOInput requirement)
+          throws AlgorithmConfigurationException, FileNotFoundException;
 }

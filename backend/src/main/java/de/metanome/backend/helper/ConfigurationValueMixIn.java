@@ -27,13 +27,15 @@ import de.metanome.backend.configuration.*;
 @JsonSubTypes({
   @JsonSubTypes.Type(value = ConfigurationValueBoolean.class, name = "configurationValueBoolean"),
   @JsonSubTypes.Type(value = ConfigurationValueDatabaseConnectionGenerator.class, name = "configurationValueDatabaseConnectionGenerator"),
+  @JsonSubTypes.Type(value = ConfigurationValueMinIOConnectionGenerator.class, name = "configurationValueMinIOConnectionGenerator"),
   @JsonSubTypes.Type(value = ConfigurationValueFileInputGenerator.class, name = "configurationValueFileInputGenerator"),
   @JsonSubTypes.Type(value = ConfigurationValueInteger.class, name = "configurationValueInteger"),
   @JsonSubTypes.Type(value = ConfigurationValueListBox.class, name = "configurationValueListBox"),
   @JsonSubTypes.Type(value = ConfigurationValueCheckBox.class, name = "configurationValueCheckBox"),
   @JsonSubTypes.Type(value = ConfigurationValueRelationalInputGenerator.class, name = "configurationValueRelationalInputGenerator"),
   @JsonSubTypes.Type(value = ConfigurationValueString.class, name = "configurationValueString"),
-  @JsonSubTypes.Type(value = ConfigurationValueTableInputGenerator.class, name = "configurationValueTableInputGenerator")
+  @JsonSubTypes.Type(value = ConfigurationValueTableInputGenerator.class, name = "configurationValueTableInputGenerator"),
+  @JsonSubTypes.Type(value = ConfigurationValueMinIOInputGenerator.class, name = "configurationValueMinIOInputGenerator")
 })
 public class ConfigurationValueMixIn {
 

@@ -23,20 +23,13 @@ import de.metanome.algorithm_integration.configuration.ConfigurationSettingDatab
 import de.metanome.algorithm_integration.configuration.ConfigurationSettingFileInput;
 import de.metanome.algorithm_integration.configuration.ConfigurationSettingTableInput;
 import de.metanome.algorithm_integration.configuration.ConfigurationValue;
-import de.metanome.algorithm_integration.input.DatabaseConnectionGenerator;
-import de.metanome.algorithm_integration.input.FileInputGenerator;
-import de.metanome.algorithm_integration.input.RelationalInputGenerator;
-import de.metanome.algorithm_integration.input.TableInputGenerator;
+import de.metanome.algorithm_integration.input.*;
 import de.metanome.algorithm_integration.results.JsonConverter;
 import de.metanome.backend.algorithm_execution.AlgorithmExecution;
 import de.metanome.backend.algorithm_execution.ProcessRegistry;
 import de.metanome.backend.configuration.DefaultConfigurationFactory;
 import de.metanome.backend.constants.Constants;
-import de.metanome.backend.helper.DatabaseConnectionGeneratorMixIn;
-import de.metanome.backend.helper.ExecutionResponse;
-import de.metanome.backend.helper.FileInputGeneratorMixIn;
-import de.metanome.backend.helper.RelationalInputGeneratorMixIn;
-import de.metanome.backend.helper.TableInputGeneratorMixIn;
+import de.metanome.backend.helper.*;
 import de.metanome.backend.result_postprocessing.ResultPostProcessor;
 import de.metanome.backend.results_db.EntityStorageException;
 import de.metanome.backend.results_db.Execution;
@@ -285,7 +278,9 @@ public class AlgorithmExecutionResource {
       jsonConverter = new JsonConverter<>();
     jsonConverter.addMixIn(FileInputGenerator.class, FileInputGeneratorMixIn.class);
     jsonConverter.addMixIn(TableInputGenerator.class, TableInputGeneratorMixIn.class);
+    jsonConverter.addMixIn(MinIOInputGenerator.class, MinIOInputGeneratorMixIn.class);
     jsonConverter.addMixIn(DatabaseConnectionGenerator.class, DatabaseConnectionGeneratorMixIn.class);
+    jsonConverter.addMixIn(MinIOConnectionGenerator.class, MinIOConnectionGeneratorMixIn.class);
     jsonConverter.addMixIn(RelationalInputGenerator.class, RelationalInputGeneratorMixIn.class);
     return jsonConverter.toJsonStrings(parameterValues);
   }
